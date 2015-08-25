@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid columns="4" id="dadosEntrega"
+		style="width:100%;margin-top:20px;border-width: 0px !important;"
+		columnClasses="rotulo,campo,rotulo,campo" styleClass="sem-borda">
+
+		<p:outputLabel value="Data da Entrega" for="dtEntrega" />
+		<p:calendar size="10" pattern="dd/MM/yyyy" id="dtEntrega"
+			value="#{cadastroPedidoBean.pedido.dataEntrega}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}">
+			<f:convertDateTime pattern="dd/MM/yyyy"/>
+		</p:calendar>
+
+		<p:spacer />
+		<p:spacer />
+
+		<p:outputLabel value="Rua" for="rua" />
+		<p:inputText size="50" id="rua"
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.rua}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}"/>
+
+		<p:outputLabel value="Número" for="numero" />
+		<p:inputText size="5" id="numero"
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.numero}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}"/>
+
+		<p:outputLabel value="Complemento" for="complemento" />
+		<p:inputText size="50" id="complemento"
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.complemento}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}"/>
+
+		<p:outputLabel value="Cidade" for="cidade" />
+		<p:inputText size="20" id="cidade"
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.cidade}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}"/>
+
+		<p:outputLabel value="Estado" for="estado" />
+		<p:inputText size="20" id="estado"
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.uf}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}"/>
+
+		<p:outputLabel value="CEP" for="cep" />
+		<p:inputText size="10" id="cep"
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.cep}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}"/>
+
+	</p:panelGrid>
+
+</ui:composition>

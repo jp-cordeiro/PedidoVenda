@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+body {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	font-weight: normal;
+}
+
+header {
+	padding: 5px 0px;
+	margin-bottom: 20px;
+	height: 30px;
+	background-color: #808080;
+	color: #fff;
+	box-shadow: 0px 2px 2px #ccc;
+}
+
+header>div {
+	margin-left: 10px
+}
+
+#conteudo {
+	padding: 0px 10px;
+}
+
+#login-dialog {
+	width: 290px;
+	margin: auto;
+	margin-top: 150px;
+}
+
+h1 {
+	font-size: 24px;
+	padding: opx;
+	margin: opx;
+}
+
+.grid-login {
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	margin-top: 8px;
+	padding: 15px;
+}
+
+.ajax-status {
+	position: fixed;
+	top: 55px;
+	right: 10px;
+	width: 35px;
+	height: 35px;
+}
+
+/* .ui-autocomplete-input.ui-inputfield{ */
+/* 	width: 100%; */
+/* } */
+.produto-tabela .ui-autocomplete-input.ui-inputfield {
+	widht: 200%;
+}
+
+/*Cutomiza TabView - inicio*/
+.ui-tabs .ui-tabs-panel {
+	padding: 0.5em 0.2em !important;
+}
+
+.rotulo {
+	width: 150px;
+}
+
+.campo {
+	
+}
+/*Menu sistema inicio*/
+.menu-sistema {
+	border: 0px !important;
+	padding: 0px !important;
+	background: none !important;
+}
+
+.menu-sitema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text{
+	color: #ffffff !important
+}
+
+.menu-sistema .ui-icon-triangle-1-s{
+	background-color: #ffffff;
+	background: url(#{resource['images:setabaixo.png']}) no-repeat;
+}
+
+/*Menu sistema fim*/
+.sem-margem td {
+	border-width: 0px !important;
+}
+
+.ui-selectmanycheckbox td {
+	border-width: 0px !important;
+}
+
+.ui-selectmanycheckbox td label {
+	padding-right: 20px;
+}
+
+.ui-panelgrid td {
+	height: 34px;
+}
+
+footer {
+	padding: 0px 10px;
+	margin-bottom: 10px;
+}
+
+.ui-state-disabled {
+	opacity: .75 !important;
+}

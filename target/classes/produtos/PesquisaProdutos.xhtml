@@ -1,0 +1,103 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa Produtos</ui:define>
+
+	<ui:define name="corpo">
+
+		<h:form id="frmPesquisa">
+			<h1>Consulta de Produtos</h1>
+
+			<p:messages autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top:20px;padding:10px;">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar"
+						action="#{pesquisaProdutosController.pesquisar()}" update="@form" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" id="btNovo"
+						outcome="/produtos/CadastroProduto" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="pnNovoProduto"
+				style="width:100%;margin-top:20px;" columnClasses="rotulo,campo">
+
+				<p:outputLabel value="SKU" for="sku" />
+				<p:inputText id="sku" size="30"
+					value="#{pesquisaProdutosController.filtro.sku}" />
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="60"
+					value="#{pesquisaProdutosController.filtro.nome}" />
+
+			</p:panelGrid>
+
+			<p:dataTable id="tbProdutos"
+				value="#{pesquisaProdutosController.produtosFiltrados}"
+				var="produto" style="margin-top:20px"
+				emptyMessage="Nenhum produto encontrado" paginator="true" rows="20"
+				paginatorAlwaysVisible="false" paginatorPosition="bottom"
+				rowsPerPageTemplate="10,20,30">
+				<p:column headerText="SKU" style="text-align:center;width:100px">
+					<h:outputText value="#{produto.sku}" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{produto.nome}" style="width:250px" />
+				</p:column>
+
+				<p:column headerText="Categoria">
+					<h:outputText
+						value="#{produto.categoria.categoriaPai.descricao} - #{produto.categoria.descricao}" />
+				</p:column>
+
+				<p:column headerText="Valor unitário"
+					style="text-align: right;width: 120px;">
+					<h:outputText value="R$ #{produto.valorUnitario}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Estoque"
+					style="text-align: center;width: 100px;">
+					<h:outputText value="#{produto.quantidadeEstoque}" />
+				</p:column>
+
+				<p:column style="text-align: center;width: 100px;">
+					<p:button icon="ui-icon-pencil" title="Editar"
+						outcome="/produtos/CadastroProduto">
+						<f:param name="produto" value="#{produto.id}" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="PF('confirmaExclusao').show()" process="@this"
+						update="frmPesquisa:dialogExclusao">
+						<f:setPropertyActionListener value="#{produto}"
+							target="#{pesquisaProdutosController.produtoSelecionado}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog id="dialogExclusao" header="Exclusão de produto"
+				severity="alert"
+				message="Tem certeza que deseja excluir o produto #{pesquisaProdutosController.produtoSelecionado.sku} - #{pesquisaProdutosController.produtoSelecionado.nome}?"
+				global="true" showEffect="fade" hideEffect="puff"
+				widgetVar="confirmaExclusao">
+				<p:button value="Não"
+					onclick="PF('confirmaExclusao').hide();return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="PF('confirmaExclusao').hide();return false;"
+					action="#{pesquisaProdutosController.excluir()}"
+					update="frmPesquisa,tbProdutos" process="@this" />
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

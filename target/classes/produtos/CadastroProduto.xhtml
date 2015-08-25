@@ -1,0 +1,85 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo">#{cadastroProdutosController.edit ? 'Edição de Produto' : 'Novo Produto'}</ui:define>
+
+	<ui:define name="corpo">
+
+		<f:metadata>
+			<o:viewParam name="produto"
+				value="#{cadastroProdutosController.produto}" />
+			<f:event listener="#{cadastroProdutosController.inicializar()}"
+				type="preRenderView" />
+		</f:metadata>
+
+		<h:form id="frm">
+			<h1>#{cadastroProdutosController.edit ? 'Edição de Produto' : 'Novo Produto'}</h1>
+
+			<p:messages autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top:20px;padding:10px;">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
+					<p:commandButton value="Salvar" id="btSalvar"
+						action="#{cadastroProdutosController.salvar()}" update="frm">
+					</p:commandButton>
+					<p:commandButton value="Limpar" type="reset" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/produtos/PesquisaProdutos" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="pnNovoProduto"
+				style="width:100%;margin-top:20px;" columnClasses="rotulo,campo">
+
+				<p:outputLabel value="SKU" for="sku" />
+				<p:inputText id="sku" size="30"
+					value="#{cadastroProdutosController.produto.sku}" />
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="80" maxlength="80"
+					value="#{cadastroProdutosController.produto.nome}" />
+
+				<p:outputLabel value="Categoria" for="categoria" />
+				<p:selectOneMenu id="categoria"
+					value="#{cadastroProdutosController.categoriaPai}">
+					<f:selectItem itemLabel="Selecione a categoria" />
+					<f:selectItems
+						value="#{cadastroProdutosController.categoriasRaizes}"
+						var="categoria" itemValue="#{categoria}"
+						itemLabel="#{categoria.descricao}" />
+					<p:ajax
+						listener="#{cadastroProdutosController.carregarSubCategorias()}"
+						update="subcategoria" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Subcategoria" for="subcategoria" />
+				<p:selectOneMenu id="subcategoria"
+					value="#{cadastroProdutosController.produto.categoria}">
+					<f:selectItem itemLabel="Selecione a subcategoria" />
+					<f:selectItems value="#{cadastroProdutosController.subCategorias}"
+						var="subcategoria" itemValue="#{subcategoria}"
+						itemLabel="#{subcategoria.descricao}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Valor unitário" for="valorunitario" />
+				<p:inputText id="valorunitario" size="10" maxlength="10"
+					styleClass="moeda"
+					value="#{cadastroProdutosController.produto.valorUnitario}">
+					<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+				</p:inputText>
+
+				<p:outputLabel value="Estoque" for="estoque" />
+				<p:inputText id="estoque" size="10" maxlength="5"
+					value="#{cadastroProdutosController.produto.quantidadeEstoque}" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Sistema de Pedidos de Venda</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+	<h:outputScript library="js" name="jquery.maskMoney.js" />
+</h:head>
+
+<h:body>
+
+	<!-- AjaxStatus -->
+	<p:ajaxStatus styleClass="ajax-status">
+		<f:facet name="start">
+			<h:graphicImage library="images" name="carregando.gif" />
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+
+	<header> <!-- Cabeçalho -->
+	<div style="float: left">
+		<h:link outcome="/Home">
+			<h:graphicImage library="images" name="logo-java.png" />
+		</h:link>
+	</div>
+
+	<div style="float: right; margin-right: 110px;">
+		<span
+			style="float: left; height: 30px; line-height: 30px; margin-right: 60px;">
+			Olá #{seguranca.nomeUsuario} </span>
+
+		<h:form style="display:inline-block">
+
+			<p:menubar styleClass="menu-sistema" autoDisplay="false">
+				<p:submenu label="Cadastros">
+					<p:menuitem value="Clientes" />
+					<p:menuitem value="Usuários" />
+					<p:separator />
+					<p:menuitem value="Categorias" />
+					<p:menuitem value="Produtos" outcome="/produtos/PesquisaProdutos" />
+				</p:submenu>
+				<p:submenu label="Pedidos">
+					<p:menuitem value="Novo Pedido" outcome="/pedidos/CadastroPedido" />
+					<p:menuitem value="Pesquisar Pedidos"
+						outcome="/pedidos/PesquisaPedidos" />
+				</p:submenu>
+				<p:menuitem value="Sair" url="/j_spring_security_logout"/>
+			</p:menubar>
+
+		</h:form>
+
+	</div>
+
+	</header>
+
+	<!-- Corpo -->
+	<div id="conteudo">
+		<ui:insert name="corpo" />
+	</div>
+
+	<!-- Rodapé -->
+	<p:separator style="magin-top:10px;clear:both;" />
+
+	<footer> Informática Sistemas Comerciais </footer>
+
+	<script> 
+		function configurarMoeda(){
+			$(".moeda").maskMoney({decimal: ",", thousands: ".", allowZero: true});
+		}
+		$(document).ready(function(){
+			configurarMoeda();
+		});
+	</script>
+</h:body>
+
+</html>
