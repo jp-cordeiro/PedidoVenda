@@ -11,5 +11,5 @@ Para utilizar o projeto crie no banco de dados (MySQL) um schema com o nome "ped
 
 No arquivo "src\main\webapp\META-INF\persistense.xml" alterar as informações de usuário e senha do banco de dados.
 
-No arquivo "src\main\resources\mail.properties" alterar usuário e senha de e-mail, pois será desta e-mail que o sistema enviará 
+No arquivo "src\main\resources\mail.properties" alterar usuário e senha de e-mail, pois será deste e-mail que o sistema enviará 
 as mensagens para os clientes.
