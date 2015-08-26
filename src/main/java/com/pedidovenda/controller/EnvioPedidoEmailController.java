@@ -36,7 +36,7 @@ public class EnvioPedidoEmailController implements Serializable {
 	public void enviarPedido(){
 		MailMessage message = mailer.novaMensagem();
 
-		message.to("vicent.sistemas@hotmail.com")
+		message.to(this.pedido.getCliente().getEmail())
 				.subject(
 						"Pedido de venda com o status de " + pedido.getStatus().getDescricao()
 								+ " de Nº " + pedido.getId() + ".")
