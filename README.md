@@ -1,3 +1,5 @@
+#LEIA AS INSTRUÇÕES POR FAVOR
+
 # PedidoVenda
 Projeto em Java de um sistema simples de pedido de venda.
 
@@ -13,6 +15,12 @@ No arquivo "src\main\webapp\META-INF\persistense.xml" alterar as informações d
 
 No arquivo "src\main\resources\mail.properties" alterar usuário e senha de e-mail, pois será deste e-mail que o sistema enviará 
 as mensagens para os clientes.
+
+#Requisitos do projeto
+
+Para o projeto PedidoVenda funcionanr normalmente é necessário baixar, importar e instalar via Maven o projeto simple-mail, segue o link: 
+https://github.com/codylerum/simple-email.
+Para facilitar o projeto simple-mail está diponível para download aqui também. ^^
 
 #Carga de dados para testar o sistema
 
