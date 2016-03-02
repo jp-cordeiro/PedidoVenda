@@ -20,7 +20,7 @@ as mensagens para os clientes.
 
 Para o projeto PedidoVenda funcionar normalmente é necessário baixar, importar e instalar via Maven(importar o projeto para a Workspace > Botão direito no projeto > Run as > Maven Install) o projeto simple-mail, segue o link: 
 https://github.com/codylerum/simple-email.
-Para facilitar o projeto simple-mail está diponível para download aqui também. ^^
+Para facilitar o projeto simple-mail está diponível para download aqui também.
 
 #Carga de dados para testar o sistema
 
